@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Creative Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .text-gradient { background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #60a5fa 100%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shine 3s linear infinite; }
+        .bg-gradient-tech { background: radial-gradient(circle at top right, #1e293b, #0f172a); }
+        
+        @keyframes shine { to { background-position: 200% center; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes float { 0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.1; } 50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.15; } }
+        
+        @keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+        .animate-scroll-right { display: flex; width: max-content; animation: scrollRight 40s linear infinite; }
+        .reveal { opacity: 0; animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+        .bg-animate { animation: float 10s ease-in-out infinite; }
+
+        .btn-glow:hover { box-shadow: 0 0 25px rgba(59, 130, 246, 0.6); transform: translateY(-2px); }
+        .btn-shine { position: relative; overflow: hidden; }
+        .btn-shine::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent); transition: all 0.6s; }
+        .btn-shine:hover::before { left: 100%; }
+    </style>
+</head>
+<body class="bg-[#0f172a] text-slate-200 antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <img src="gambar/AI.jpeg" class="w-9 h-9 rounded-xl object-cover border shadow-lg shadow-blue-500/10" alt="Logo">
+                <span class="text-xl font-bold tracking-tight text-white">AI Creative <span class="text-blue-500">Studio</span></span>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#home" class="hover:text-blue-400 transition">Beranda</a>
+                <a href="#services" class="hover:text-blue-400 transition">Layanan</a>
+                <a href="#about" class="hover:text-blue-400 transition">Tentang Kami</a>
+                <a href="#contact" class="btn-glow btn-shine px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full transition-all duration-300 shadow-lg shadow-blue-500/20">Pesan Sekarang</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-toggle" class="md:hidden text-white p-2">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#0f172a] border-t border-slate-800 px-6 py-6 space-y-4">
+            <a href="#home" class="block text-slate-300 hover:text-blue-400 transition font-medium">Beranda</a>
+            <a href="#services" class="block text-slate-300 hover:text-blue-400 transition font-medium">Layanan</a>
+            <a href="#about" class="block text-slate-300 hover:text-blue-400 transition font-medium">Tentang Kami</a>
+            <a href="#contact" class="block w-full py-3 bg-blue-600 text-white rounded-xl text-center font-bold">Mulai Proyek</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.2),transparent_50%)] bg-animate"></div>
+        <div class="max-w-7xl mx-auto px-6 relative">
+            <div class="text-center max-w-3xl mx-auto">
+                <div class="reveal inline-flex items-center space-x-2 bg-blue-500/10 border border-blue-500/20 rounded-full px-4 py-1.5 mb-6" style="animation-delay: 100ms;">
+                    <span class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-blue-400">Generasi Baru Agensi Kreatif</span>
+                </div>
+                <h1 class="reveal text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight" style="animation-delay: 300ms;">
+                    AI Creative <span class="text-gradient">Studio</span>
+                </h1>
+                <p class="reveal text-lg text-slate-400 mb-10 leading-relaxed" style="animation-delay: 500ms;">
+                    Setiap ide memiliki potensi untuk menjadi sesuatu yang luar biasa. Dengan memanfaatkan teknologi AI dan sentuhan kreativitas manusia, kami membantu mengubah ide tersebut menjadi konten visual yang menarik dan bernilai
+                </p>
+                <!-- Infinite Slider Section -->
+                <div class="reveal mt-20 overflow-hidden relative" style="animation-delay: 900ms;">
+                    <div class="animate-scroll-right hover:[animation-play-state:paused] cursor-pointer">
+                        <!-- First set of items -->
+                        <div class="flex gap-6 pr-6">
+                            <div class="glass p-6 rounded-2xl border border-slate-700 w-80 shrink-0 text-left">
+                                <div class="flex text-yellow-400 mb-3"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                                <p class="text-slate-300 text-sm italic mb-4">"Hasil videonya keren banget! Sangat membantu untuk promosi klinik saya."</p>
+                                <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-xs">BS</div><span class="text-white font-semibold text-sm"></span></div>
+                            </div>
+                            <div class="glass p-6 rounded-2xl border border-slate-700 w-80 shrink-0 text-left">
+                                <div class="flex text-yellow-400 mb-3"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                                <p class="text-slate-300 text-sm italic mb-4">"Prosesnya cepat dan hasilnya sesuai dengan yang saya bayangkan. Recommended!"</p>
+                                <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center text-white font-bold text-xs">SW</div><span class="text-white font-semibold text-sm"></span></div>
+                            </div>
+                            <div class="glass p-6 rounded-2xl border border-slate-700 w-80 shrink-0 text-left">
+                                <div class="flex text-yellow-400 mb-3"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                                <p class="text-slate-300 text-sm italic mb-4">"Sangat membantu membuat video untuk tugas kuliah. Terima kasih!"</p>
+                                <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold text-xs">AP</div><span class="text-white font-semibold text-sm"></span></div>
+                            </div>
+                            <div class="glass p-6 rounded-2xl border border-slate-700 w-80 shrink-0 text-left">
+                                <div class="flex text-yellow-400 mb-3"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                                <p class="text-slate-300 text-sm italic mb-4">"Style foto dan Edit potonya sangat cepat dan baguss. Kualitas tinggi."</p>
+                                <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-rose-600 flex items-center justify-center text-white font-bold text-xs">ML</div><span class="text-white font-semibold text-sm"></span></div>
+                            </div>
+                        </div>
+                        <!-- Duplicate set for seamless looping -->
+                        <div class="flex gap-6 pr-6">
+                            <div class="glass p-6 rounded-2xl border border-slate-700 w-80 shrink-0 text-left">
+                                <div class="flex text-yellow-400 mb-3"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                                <p class="text-slate-300 text-sm italic mb-4">"Hasil videonya keren banget! Sangat membantu untuk promosi klinik saya."</p>
+                                <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-xs">BS</div><span class="text-white font-semibold text-sm"></span></div>
+                            </div>
+                            <div class="glass p-6 rounded-2xl border border-slate-700 w-80 shrink-0 text-left">
+                                <div class="flex text-yellow-400 mb-3"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                                <p class="text-slate-300 text-sm italic mb-4">"Prosesnya cepat dan hasilnya sesuai dengan yang saya bayangkan. Recommended!"</p>
+                                <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center text-white font-bold text-xs">SW</div><span class="text-white font-semibold text-sm"></span></div>
+                            </div>
+                            <div class="glass p-6 rounded-2xl border border-slate-700 w-80 shrink-0 text-left">
+                                <div class="flex text-yellow-400 mb-3"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                                <p class="text-slate-300 text-sm italic mb-4">"Sangat membantu membuat video untuk tugas kuliah. Terima kasih!"</p>
+                                <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold text-xs">AP</div><span class="text-white font-semibold text-sm">Andi Pratama</span></div>
+                            </div>
+                            <div class="glass p-6 rounded-2xl border border-slate-700 w-80 shrink-0 text-left">
+                                <div class="flex text-yellow-400 mb-3"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                                <p class="text-slate-300 text-sm italic mb-4">"Style foto dan Edit potonya sangat cepat dan baguss. Kualitas tinggi."</p>
+                                <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-rose-600 flex items-center justify-center text-white font-bold text-xs">ML</div><span class="text-white font-semibold text-sm">Maya Lestari</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Fading edges effect -->
+                    <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#0f172a] to-transparent z-10 pointer-events-none"></div>
+                    <div class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#0f172a] to-transparent z-10 pointer-events-none"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features/Services -->
+    <section id="services" class="py-24 bg-slate-900/50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4">LAYANAN KAMI</h2>
+                <p class="text-slate-400">Solusi kreatif terintegrasi dengan teknologi AI terkini.</p>
+            </div>
+            
+            <!-- Tombol Kategori Layanan -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
+                <button onclick="openServiceModal('poto')" class="btn-glow btn-shine p-8 glass text-white font-bold rounded-2xl hover:bg-blue-600/20 hover:border-blue-500/50 transition-all duration-300 flex flex-col items-center gap-4 group text-center w-full">
+                    <div class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center group-hover:bg-blue-600 transition duration-500 shadow-lg shadow-blue-500/10">
+                        <i data-lucide="camera" class="w-8 h-8 text-blue-400 group-hover:text-white transition"></i>
+                    </div>
+                    <span class="text-lg">Poto</span>
+                </button>
+                <button onclick="openServiceModal('video')" class="btn-glow btn-shine p-8 glass text-white font-bold rounded-2xl hover:bg-blue-600/20 hover:border-blue-500/50 transition-all duration-300 flex flex-col items-center gap-4 group text-center w-full">
+                    <div class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center group-hover:bg-blue-600 transition duration-500 shadow-lg shadow-blue-500/10">
+                        <i data-lucide="video" class="w-8 h-8 text-blue-400 group-hover:text-white transition"></i>
+                    </div>
+                    <span class="text-lg">Video</span>
+                </button>
+                <button onclick="openServiceModal('automation')" class="btn-glow btn-shine p-8 glass text-white font-bold rounded-2xl hover:bg-blue-600/20 hover:border-blue-500/50 transition-all duration-300 flex flex-col items-center gap-4 group text-center w-full">
+                    <div class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center group-hover:bg-blue-600 transition duration-500 shadow-lg shadow-blue-500/10">
+                        <i data-lucide="zap" class="w-8 h-8 text-blue-400 group-hover:text-white transition"></i>
+                    </div>
+                    <span class="text-lg">AI Automation</span>
+                </button>
+            </div>
+
+            <!-- Workflow / Process Section -->
+            <div class="mt-24 pt-16 border-t border-slate-800/50">
+                <h2 class="text-3xl lg:text-4xl font-bold text-white mb-16 text-center">ALUR KERJA</h2>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                    <div class="relative text-center group">
+                        <div class="w-16 h-16 bg-blue-600/10 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-blue-500/20 group-hover:border-blue-500/50 transition-colors">
+                            <i data-lucide="message-square" class="w-8 h-8 text-blue-400"></i>
+                        </div>
+                        <h4 class="text-white font-bold mb-3">1. Konsultasi</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">Diskusikan ide dan kebutuhan visual Anda dengan tim kami melalui WhatsApp</p>
+                    </div>
+                    <div class="relative text-center group">
+                        <div class="w-16 h-16 bg-blue-600/10 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-blue-500/20 group-hover:border-blue-500/50 transition-colors">
+                            <i data-lucide="cpu" class="w-8 h-8 text-blue-400"></i>
+                        </div>
+                        <h4 class="text-white font-bold mb-3">2. Pengolahan dan Editing</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">Kami memproses konsep menggunakan teknologi AI generative terkini untuk hasil yang unik. Kemudian melakukan editing agar hasil lebih maksimal</p>
+                    </div>
+                    <div class="relative text-center group">
+                        <div class="w-16 h-16 bg-blue-600/10 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-blue-500/20 group-hover:border-blue-500/50 transition-colors">
+                            <i data-lucide="wand-2" class="w-8 h-8 text-blue-400"></i>
+                        </div>
+                        <h4 class="text-white font-bold mb-3">3. Finishing</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">Editor kami menyempurnakan detail visual agar tetap terlihat natural dan profesional.</p>
+                    </div>
+                    <div class="relative text-center group">
+                        <div class="w-16 h-16 bg-blue-600/10 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-blue-500/20 group-hover:border-blue-500/50 transition-colors">
+                            <i data-lucide="check-circle-2" class="w-8 h-8 text-blue-400"></i>
+                        </div>
+                        <h4 class="text-white font-bold mb-3">4. Penyerahan</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">Hasil karya dikirimkan dalam resolusi tinggi dan siap digunakan untuk kebutuhan Anda.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2 relative">
+                    <div class="absolute -top-10 -left-10 w-64 h-64 bg-blue-600/20 rounded-full blur-3xl"></div>
+                    <div class="relative rounded-3xl overflow-hidden border border-slate-700">
+                        <img src="gambar/AI.jpeg" alt="AI Technology" class="w-full object-cover aspect-video lg:aspect-square opacity-80 transition-all duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-transparent to-transparent"></div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl lg:text-4xl font-bold text-white mb-6 leading-tight">TENTANG KAMI</h2>
+                    <p class="text-slate-400 mb-6 leading-relaxed text-lg">
+                        AI Creative Studio adalah layanan kreatif digital yang menggabungkan teknologi AI dengan kreativitas manusia untuk menghasilkan konten visual yang menarik, profesional, dan sesuai kebutuhan klien.
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start space-x-3">
+                            <i data-lucide="check-circle" class="text-blue-500 w-6 h-6 shrink-0"></i>
+                            <span class="text-slate-300">Proses Lebih Cepat dan Efisien</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i data-lucide="check-circle" class="text-blue-500 w-6 h-6 shrink-0"></i>
+                            <span class="text-slate-300">Konten Disesuaikan Dengan Kebutuhan</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i data-lucide="check-circle" class="text-blue-500 w-6 h-6 shrink-0"></i>
+                            <span class="text-slate-300">Harga Terjangkau</span>
+                        </li>
+                            <li class="flex items-start space-x-3">
+                            <i data-lucide="check-circle" class="text-blue-500 w-6 h-6 shrink-0"></i>
+                            <span class="text-slate-300">Fleksibel dan Kolaboratif</span>
+                        </li>
+                    </ul>
+                    <button onclick="showTeam(this)" class="text-blue-400 font-semibold hover:text-blue-300 transition flex items-center gap-2 group">
+                        Kenali Tim Kami Lebih Dekat <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+                    </button>
+
+                    <!-- Team Members Section -->
+                    <div id="team-section" class="mt-10 hidden opacity-0 transition-all duration-700 transform translate-y-4">
+                        <div class="grid grid-cols-2 gap-4 sm:gap-6">
+                            <div class="group">
+                                <div class="relative mb-3 rounded-2xl overflow-hidden aspect-square border border-slate-700 group-hover:border-blue-500/50 transition">
+                                    <img src="gambar/d.png" alt="CEO">
+                                </div>
+                                <h4 class="text-white font-bold text-sm">Muhammad Dani Maulana</h4>
+                                <p class="text-blue-400 text-xs uppercase tracking-wider">OWNER / FOUNDER</p>
+                            </div>
+                            <div class="group">
+                                <div class="relative mb-3 rounded-2xl overflow-hidden aspect-square border border-slate-700 group-hover:border-blue-500/50 transition">
+                                    <img src="gambar/h.jpeg" alt="AI Expert">
+                                </div>
+                                <h4 class="text-white font-bold text-sm">Muhammad Hafi</h4>
+                                <p class="text-blue-400 text-xs uppercase tracking-wider">CREATIVE</p>
+                            </div>
+                            <div class="group">
+                                <div class="relative mb-3 rounded-2xl overflow-hidden aspect-square border border-slate-700 group-hover:border-blue-500/50 transition">
+                                    <img src="gambar/n.jpg" alt="Creative" class="h-full w-full">
+                                </div>
+                                <h4 class="text-white font-bold text-sm">Naila Atresia Rahma</h4>
+                                <p class="text-blue-400 text-xs uppercase tracking-wider">ADMIN</p>
+                            </div>
+                            <div class="group">
+                                <div class="relative mb-3 rounded-2xl overflow-hidden aspect-square border border-slate-700 group-hover:border-blue-500/50 transition">
+                                    <img src="gambar/s.png" alt="Technical">
+                                </div>
+                                <h4 class="text-white font-bold text-sm">Salma Nur Lathifah</h4>
+                                <p class="text-blue-400 text-xs uppercase tracking-wider">CONTENT EDITOR</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Pop-up Layanan -->
+    <div id="service-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-6">
+        <div class="absolute inset-0 bg-[#0f172a]/90 backdrop-blur-md" onclick="closeServiceModal()"></div>
+        <div class="glass relative max-w-4xl w-full max-h-[85vh] overflow-y-auto rounded-[2.5rem] p-8 md:p-12 border border-blue-500/20 shadow-2xl">
+            <button onclick="closeServiceModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white transition p-2 hover:bg-white/5 rounded-full">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <div id="modal-content">
+                <!-- Konten dinamis masuk di sini -->
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <section id="contact" class="py-20">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="relative rounded-[3rem] p-12 lg:p-20 overflow-hidden text-center bg-blue-600">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
+                <div class="relative z-10">
+                    <h2 class="text-3xl lg:text-5xl font-bold text-white mb-8 leading-tight">Tertarik Dengan Layanan Kami?</h2>
+                    <p class="text-blue-100 mb-10 text-lg max-w-2xl mx-auto">
+                        Visualisasikan Ide Karya Visual Kamu Melalui AI Creative Studio.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="mailto:hello@aicreative.studio" class="btn-shine px-8 py-4 bg-white text-blue-600 font-bold rounded-xl hover:bg-slate-100 transition-all duration-300 shadow-xl">
+                            Konsultasi Gratis
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tombol Pemesanan Paling Bawah -->
+    <div class="pb-24 flex justify-center">
+        <button onclick="openOrderModal()" class="btn-glow btn-shine px-12 py-5 bg-blue-600 text-white font-bold rounded-2xl transition-all duration-300 flex items-center gap-3 shadow-xl shadow-blue-500/20">
+            <i data-lucide="shopping-cart" class="w-6 h-6"></i>
+            Pesan Layanan Sekarang
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center space-x-2">
+                <img src="gambar/AI.jpeg" class="w-7 h-7 rounded-lg object-cover border border-slate-700" alt="Logo">
+                <span class="text-lg font-bold text-white">AI Creative Studio</span>
+            </div>
+            <div class="text-slate-500 text-sm">
+                &copy; 2026 AI Creative Studio. Seluruh hak cipta dilindungi.
+            </div>
+            <div class="flex space-x-6">
+                <a href="#" class="text-slate-400 hover:text-blue-400 transition"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                <a href="#" class="text-slate-400 hover:text-blue-400 transition"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                <a href="#" class="text-slate-400 hover:text-blue-400 transition"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Form Pemesanan -->
+    <div id="order-modal" class="fixed inset-0 z-[110] hidden flex items-center justify-center px-6">
+        <div class="absolute inset-0 bg-[#0f172a]/95 backdrop-blur-md" onclick="closeOrderModal()"></div>
+        <div class="glass relative max-w-lg w-full rounded-[2.5rem] p-8 md:p-10 border border-blue-500/20 shadow-2xl overflow-y-auto max-h-[90vh]">
+            <button onclick="closeOrderModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white transition p-2 hover:bg-white/5 rounded-full">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            
+            <h3 class="text-2xl font-bold text-white mb-6 text-center text-gradient">Pesan Layanan</h3>
+            
+            <form id="order-form" onsubmit="handleOrderSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-slate-400 mb-1.5 ml-1">Nama Lengkap</label>
+                    <input type="text" id="order-name" required placeholder="Masukkan nama Anda" 
+                           class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-400 mb-1.5 ml-1">Nomor Telepon (WhatsApp)</label>
+                    <input type="tel" id="order-phone" required placeholder="Contoh: 08123456789" 
+                           class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-400 mb-1.5 ml-1">Harga Minimum (Rp)</label>
+                        <input type="text" id="order-price" required readonly placeholder="Pilih kategori..." 
+                               class="w-full bg-slate-800/80 border border-slate-700 rounded-xl px-4 py-3 text-slate-400 cursor-not-allowed focus:outline-none transition">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-400 mb-1.5 ml-1">Kategori</label>
+                        <select id="order-category" required onchange="updateMinPrice()"
+                                class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition appearance-none">
+                            <option value="" disabled selected>Pilih Layanan</option>
+                            <option value="Poto">Poto (AI Photo)</option>
+                            <option value="Video">Video (AI Video)</option>
+                            <option value="Automation">AI Automation</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="duration-field" class="hidden">
+                    <label class="block text-sm font-medium text-slate-400 mb-1.5 ml-1">Durasi (Detik/Menit)</label>
+                    <input type="text" id="order-duration" placeholder="Contoh: 30 detik atau 1 menit" 
+                           class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition">
+                </div>
+                <div id="style-field" class="hidden">
+                    <label class="block text-sm font-medium text-slate-400 mb-1.5 ml-1">Style Visual</label>
+                    <select id="order-style" 
+                            class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition appearance-none">
+                        <option value="" disabled selected>Pilih Style</option>
+                        <option value="Realistic">Realistic</option>
+                        <option value="Kartun">Kartun</option>
+                        <option value="Anime">Anime</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-400 mb-1.5 ml-1">Deskripsi Proyek</label>
+                    <textarea id="order-desc" required rows="3" placeholder="Ceritakan detail kebutuhan Anda..." 
+                              class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition resize-none"></textarea>
+                </div>
+                
+                <button type="submit" class="w-full btn-shine bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition duration-300 shadow-lg shadow-blue-600/20 flex items-center justify-center gap-2 mt-2">
+                    <i data-lucide="send" class="w-5 h-5"></i> Kirim Pesanan
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Mobile Menu Logic
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileToggle.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.toggle('hidden');
+            mobileToggle.innerHTML = isHidden 
+                ? '<i data-lucide="menu" class="w-6 h-6"></i>' 
+                : '<i data-lucide="x" class="w-6 h-6"></i>';
+            lucide.createIcons();
+        });
+
+        // Close mobile menu when clicking links
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        function showTeam(btn) {
+            const teamSection = document.getElementById('team-section');
+            const isHidden = teamSection.classList.contains('hidden');
+
+            if (isHidden) {
+                teamSection.classList.remove('hidden');
+                setTimeout(() => {
+                    teamSection.classList.remove('opacity-0', 'translate-y-4');
+                }, 50);
+                btn.innerHTML = `Tutup Info Tim <i data-lucide="chevron-up" class="w-4 h-4"></i>`;
+            } else {
+                teamSection.classList.add('opacity-0', 'translate-y-4');
+                setTimeout(() => teamSection.classList.add('hidden'), 700);
+                btn.innerHTML = `Kenali Tim Kami Lebih Dekat <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>`;
+            }
+            lucide.createIcons();
+        }
+
+        // Konfigurasi Data Modal
+        const serviceDetails = {
+            poto: {
+                title: "Galeri Poto Kreatif AI",
+                type: "gallery",
+                items: [
+                    { url: "gambar/realistis.png", title: "Realistis" },
+                    { url: "gambar/3d.png", title: "Kartun" },
+                    { url: "gambar/karikatur.png", title: "Karikatur" },
+                    { url: "gambar/anime.png", title: "Anime/Manga" }
+                ],
+                description: "Ciptakan identitas visual yang unik dengan berbagai pilihan style AI yang kami sediakan khusus untuk kebutuhan Anda."
+            },
+            video: {
+                title: "Koleksi Video Dinamis",
+                type: "video",
+                items: [
+                    { src: "video/3.mp4", title: "Edukasi + Promosi Video AI" },
+                    { src: "video/narto.mp4", title: "Animasi AI" }
+                ],
+                description: "Transformasikan ide Anda menjadi video sinematik berkualitas tinggi yang memukau audiens Anda."
+            },
+            automation: {
+                title: "AI Automation",
+                type: "text",
+                content: "Coming Soon",
+                description: "Otomasi masa depan sedang kami siapkan untuk membantu efisiensi bisnis dan kreativitas Anda."
+            }
+        };
+
+        function openServiceModal(type) {
+            const modal = document.getElementById('service-modal');
+            const contentArea = document.getElementById('modal-content');
+            const data = serviceDetails[type];
+            
+            let html = `<h3 class="text-3xl md:text-4xl font-bold text-white mb-8 text-center text-gradient">${data.title}</h3>`;
+            
+            if (data.type === 'gallery') {
+                html += `<div class="grid grid-cols-1 md:grid-cols-2 gap-6">`;
+                data.items.forEach(item => {
+                    html += `
+                        <div class="group overflow-hidden rounded-2xl border border-slate-700 bg-slate-800/50 transition hover:border-blue-500/50">
+                            <img src="${item.url}" class="w-full h-56 object-cover group-hover:scale-105 transition duration-500" alt="${item.title}">
+                            <div class="p-4"><p class="text-white font-medium text-center">${item.title}</p></div>
+                        </div>`;
+                });
+                html += `</div>`;
+            } else if (data.type === 'video') {
+                html += `<div class="grid grid-cols-2 gap-4 md:gap-6">`;
+                data.items.forEach(item => {
+                    html += `
+                        <div class="group overflow-hidden rounded-xl border border-slate-700 bg-slate-800/50 transition hover:border-blue-500/50">
+                            <video src="${item.src}" controls class="w-full aspect-[9/16] object-cover bg-black"></video>
+                            <div class="p-4"><p class="text-white font-medium text-center text-sm md:text-base">${item.title}</p></div>
+                        </div>`;
+                });
+                html += `</div>`;
+            } else {
+                html += `<div class="py-20 text-center"><p class="text-5xl md:text-6xl font-black text-blue-500/20 tracking-tighter uppercase italic">${data.content}</p><p class="mt-4 text-slate-400">Kami sedang menyiapkan sesuatu yang luar biasa untuk Anda.</p></div>`;
+            }
+
+            // Menambahkan teks deskripsi di bagian bawah konten modal
+            html += `
+                <div class="mt-10 pt-8 border-t border-slate-700/50 text-center">
+                    <p class="text-slate-400 max-w-2xl mx-auto leading-relaxed italic text-sm md:text-base">
+                        "${data.description}"
+                    </p>
+                </div>`;
+
+            contentArea.innerHTML = html;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent scroll
+            lucide.createIcons();
+        }
+
+        function closeServiceModal() {
+            const modal = document.getElementById('service-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Order Modal Functions
+        function openOrderModal() {
+            const modal = document.getElementById('order-modal');
+            document.getElementById('order-form').reset();
+            document.getElementById('duration-field').classList.add('hidden');
+            document.getElementById('style-field').classList.add('hidden');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons();
+        }
+
+        function closeOrderModal() {
+            document.getElementById('order-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function updateMinPrice() {
+            const category = document.getElementById('order-category').value;
+            const priceInput = document.getElementById('order-price');
+            const durationField = document.getElementById('duration-field');
+            const styleField = document.getElementById('style-field');
+            
+            const priceMapping = {
+                'Poto': "50.000",
+                'Video': "100.000",
+                'Automation': "500.000"
+            };
+
+            if (priceMapping[category]) {
+                priceInput.value = priceMapping[category];
+            }
+
+            // Logika Visibilitas Kolom Tambahan
+            if (category === 'Video') {
+                durationField.classList.remove('hidden');
+                styleField.classList.remove('hidden');
+            } else if (category === 'Poto') {
+                durationField.classList.add('hidden');
+                styleField.classList.remove('hidden');
+            } else {
+                durationField.classList.add('hidden');
+                styleField.classList.add('hidden');
+            }
+        }
+
+        function handleOrderSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('order-name').value;
+            const phone = document.getElementById('order-phone').value;
+            const price = document.getElementById('order-price').value;
+            const category = document.getElementById('order-category').value;
+            const desc = document.getElementById('order-desc').value;
+            const duration = document.getElementById('order-duration').value;
+            const style = document.getElementById('order-style').value;
+
+            let extraInfo = "";
+            if (category === 'Video') {
+                extraInfo = `\n*Durasi:* ${duration}\n*Style:* ${style}`;
+            } else if (category === 'Poto') {
+                extraInfo = `\n*Style:* ${style}`;
+            }
+
+            const message = `Halo AI Creative Studio, saya ingin memesan layanan:\n\n*Nama:* ${name}\n*WA:* ${phone}\n*Kategori:* ${category}${extraInfo}\n*Harga Min:* Rp ${price}\n*Deskripsi:* ${desc}`;
+            const whatsappUrl = `https://wa.me/6283150522725?text=${encodeURIComponent(message)}`; // Ganti dengan nomor asli Anda
+            window.open(whatsappUrl, '_blank');
+            closeOrderModal();
+        }
+    </script>
+</body>
+</html>
